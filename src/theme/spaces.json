@@ -1,0 +1,16 @@
+{
+  "none": "0",
+  "xxs": ".2rem",
+  "xs": ".4rem",
+  "s": ".6rem",
+  "sp": "1rem",
+  "m": "1.4rem",
+  "mp": "2.2rem",
+  "l": "3rem",
+  "lp": "4rem",
+  "xl": "6rem",
+  "xxl": "10rem",
+  "h": "22.6rem",
+  "xh": "25rem",
+  "xxh": "50rem"
+}
