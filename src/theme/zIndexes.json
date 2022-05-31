@@ -1,0 +1,17 @@
+{
+  "bottom": {
+    "low": 1,
+    "medium": 5,
+    "high": 9
+  },
+  "middle": {
+    "low": 10,
+    "medium": 50,
+    "high": 99
+  },
+  "top": {
+    "low": 100,
+    "medium": 500,
+    "high": 999
+  }
+}
