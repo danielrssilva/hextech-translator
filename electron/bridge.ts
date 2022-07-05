@@ -38,6 +38,9 @@ export const api = {
       }
     )
   },
+  openExternalPage: (url: string) => {
+    require('electron').shell.openExternal(url);
+  },
   on: (channel: string, callback: Function) => {
     ipcRenderer.on(channel, (_, data) => callback(data))
   },
