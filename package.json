@@ -1,7 +1,7 @@
 {
   "name": "hextech-translator",
   "author": "Hya Corporation",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An app used to change League's language",
   "main": "./.webpack/main/index.js",
   "scripts": {
