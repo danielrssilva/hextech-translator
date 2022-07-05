@@ -1,6 +1,7 @@
 import SectionTitle from '../SectionTitle'
 import { CloseButton, Container } from './styles'
 import { IoMdClose } from 'react-icons/io'
+import { generalHover, generalClick } from '../../constants/sounds'
 
 export type IntructionsProps = {
   toggleInstructions: () => void
@@ -10,7 +11,13 @@ const Instructions = ({ toggleInstructions }: IntructionsProps) => {
   return (
     <Container>
       <div>
-        <CloseButton onClick={toggleInstructions}>
+        <CloseButton
+          onClick={() => {
+            generalClick.play()
+            toggleInstructions()
+          }}
+          onMouseEnter={() => generalHover.play()}
+        >
           <IoMdClose />
         </CloseButton>
         <SectionTitle> Instructions </SectionTitle>

@@ -12,6 +12,15 @@ import Footer from '../../components/Footer'
 import Instructions from '../../components/Instructions'
 import { useBoolean } from '../../hooks/useBoolean'
 import { IoMdHelp } from 'react-icons/io'
+import {
+  generalHover,
+  buttonReady,
+  buttonHover,
+  buttonClick,
+  fileReady,
+  launcherReady,
+  generalClick,
+} from '../../constants/sounds'
 
 const empty = ''
 
@@ -33,7 +42,10 @@ const Main = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const [renderInstructions, toggleInstructions] = useBoolean(false)
 
+  const isButtonDisabled =
+    filePath === empty || region === empty || language === empty || loading
   function handleChange() {
+    fileReady.play()
     if (
       filePath === empty ||
       !filePath.includes('system.yaml') ||
@@ -48,6 +60,7 @@ const Main = () => {
     window.Main.changeLanguage(filePath, region, language, setLog, setLoading)
   }
   const onFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    buttonClick.play()
     setLog(emptyLog)
     if (event.target.files) setFilePath(event.target.files[0].path)
   }
@@ -69,12 +82,26 @@ const Main = () => {
     }
   }, [log])
 
+  useEffect(() => {
+    if (!isButtonDisabled) buttonReady.play()
+  }, [isButtonDisabled])
+
+  useEffect(() => {
+    if (!loading && log.type === 'success') launcherReady.play()
+  }, [log, loading])
+
   return (
     <Container>
       {renderInstructions && (
         <Instructions toggleInstructions={toggleInstructions} />
       )}
-      <HelpButton onClick={toggleInstructions}>
+      <HelpButton
+        onClick={() => {
+          generalClick.play()
+          toggleInstructions()
+        }}
+        onMouseEnter={() => generalHover.play()}
+      >
         <IoMdHelp />
       </HelpButton>
       <Header />
@@ -114,12 +141,8 @@ const Main = () => {
       </Section>
       <Button
         onClick={handleChange}
-        disabled={
-          filePath === empty ||
-          region === empty ||
-          language === empty ||
-          loading
-        }
+        disabled={isButtonDisabled}
+        onMouseEnter={() => buttonHover.play()}
       >
         Save and launch game
       </Button>

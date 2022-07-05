@@ -5,6 +5,7 @@ export const Container = styled.div`
   color: #928E81;
   transition: 0.3s color;
   margin: 0.7rem;
+  cursor: pointer;
 
   &.active {
     color: #E4DBC8;
@@ -15,6 +16,7 @@ export const Container = styled.div`
     }
   }
   &:hover {
+    cursor: pointer;
     color: #E4DBC8;
     .rhombus{
       background-color: #C8AA6D;

@@ -1,5 +1,6 @@
 import { ChangeEventHandler } from 'react'
 import { Container } from './styles'
+import { generalHover, generalClick } from '../../constants/sounds'
 
 type ButtonProps = {
   id: string
@@ -10,7 +11,11 @@ type ButtonProps = {
 
 const InputRadio = ({ id, value, active, onChange }: ButtonProps) => {
   return (
-    <Container className={active ? 'active' : ''}>
+    <Container
+      className={active ? 'active' : ''}
+      onClick={() => generalClick.play()}
+      onMouseEnter={() => generalHover.play()}
+    >
       <label htmlFor={id} className={`rhombus ${active ? 'active' : ''}`} />
       <label htmlFor={id} className={active ? 'active' : ''} key={id}>
         {value}
