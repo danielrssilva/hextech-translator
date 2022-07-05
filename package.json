@@ -1,7 +1,7 @@
 {
   "name": "hextech-translator",
   "author": "Hya Corporation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An app used to change League's language",
   "main": "./.webpack/main/index.js",
   "scripts": {
@@ -12,10 +12,44 @@
     "lint": "eslint . --ext js,ts",
     "test": "jest",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "build": "npm run package && npm run make && npm run release && npm run dist"
   },
   "keywords": [],
-  "license": "MIT",
+  "build": {
+    "appId": "com.hextech-translator",
+    "productName": "Hextech Translator",
+    "nsis": {
+      "artifactName": "Install Hextech Translator.${ext}",
+      "uninstallDisplayName": "Hextech Translator"
+    },
+    "mac": {
+      "category": "Utility"
+    },
+    "files": [
+      "**/*",
+      "dist/**/*"
+    ],
+    "directories": {
+      "output": "release",
+      "buildResources": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "extraFiles": [
+      "config"
+    ]
+  },
   "dependencies": {
     "js-yaml": "4.1.0",
     "react": "17.0.2",
@@ -76,8 +110,8 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "name": "Hextech Translator",
-        "executableName": "hextech-translator",
+        "name": "HextechTranslator",
+        "executableName": "HextechTranslator",
         "icon": "assets/icon",
         "extraResource": [
           "assets"
@@ -108,7 +142,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "Electron Starter"
+            "name": "HextechTranslator"
           }
         },
         {
