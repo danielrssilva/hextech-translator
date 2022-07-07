@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Container } from './styles'
 
+const currentVersion = '1.0.3'
+
 const Footer = () => {
-  const currentVersion = '1.0.2'
   const [latestVersion, setLatestVersion] = useState(currentVersion)
 
   const areVersionsDifferent = currentVersion !== latestVersion
@@ -30,7 +31,7 @@ const Footer = () => {
       title={
         areVersionsDifferent
           ? `Client outdated. Latest version: V${latestVersion}`
-          : ''
+          : 'View release on Github'
       }
     >
       <span className={`${areVersionsDifferent && 'outdated'}`}>

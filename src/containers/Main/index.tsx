@@ -17,12 +17,13 @@ import {
   buttonReady,
   buttonHover,
   buttonClick,
-  fileReady,
   launcherReady,
   generalClick,
+  playAudio,
 } from '../../constants/sounds'
 
 const empty = ''
+const usualPath = 'C:/Games/Riot Games/system.yaml'
 
 interface ILog {
   message: string
@@ -35,7 +36,7 @@ const emptyLog = {
 }
 
 const Main = () => {
-  const [filePath, setFilePath] = useState<string>(empty)
+  const [filePath, setFilePath] = useState<string>(usualPath)
   const [region, setRegion] = useState<string>(empty)
   const [language, setLanguage] = useState<string>(empty)
   const [log, setLog] = useState<ILog>(emptyLog)
@@ -43,9 +44,13 @@ const Main = () => {
   const [renderInstructions, toggleInstructions] = useBoolean(false)
 
   const isButtonDisabled =
-    filePath === empty || region === empty || language === empty || loading
+    filePath === empty ||
+    region === empty ||
+    language === empty ||
+    loading ||
+    log.type === 'error'
+
   function handleChange() {
-    fileReady.play()
     if (
       filePath === empty ||
       !filePath.includes('system.yaml') ||
@@ -60,7 +65,7 @@ const Main = () => {
     window.Main.changeLanguage(filePath, region, language, setLog, setLoading)
   }
   const onFileUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    buttonClick.play()
+    playAudio(buttonClick)
     setLog(emptyLog)
     if (event.target.files) setFilePath(event.target.files[0].path)
   }
@@ -80,14 +85,17 @@ const Main = () => {
       setRegion(empty)
       setLanguage(empty)
     }
+    if (log.type === 'error') {
+      setFilePath(empty)
+    }
   }, [log])
 
   useEffect(() => {
-    if (!isButtonDisabled) buttonReady.play()
+    if (!isButtonDisabled) playAudio(buttonReady)
   }, [isButtonDisabled])
 
   useEffect(() => {
-    if (!loading && log.type === 'success') launcherReady.play()
+    if (!loading && log.type === 'success') playAudio(launcherReady)
   }, [log, loading])
 
   return (
@@ -97,10 +105,10 @@ const Main = () => {
       )}
       <HelpButton
         onClick={() => {
-          generalClick.play()
+          playAudio(generalClick)
           toggleInstructions()
         }}
-        onMouseEnter={() => generalHover.play()}
+        onMouseEnter={() => playAudio(generalHover)}
       >
         <IoMdHelp />
       </HelpButton>
@@ -111,6 +119,7 @@ const Main = () => {
           filePath={filePath}
           active={!!filePath}
           onChange={onFileUpload}
+          error={log.type === 'error'}
         />
       </Section>
       <Section>
@@ -119,6 +128,7 @@ const Main = () => {
           {regions.map(({ code }) => (
             <InputRadio
               id={code}
+              key={code}
               value={code}
               active={region === code}
               onChange={handleRegionChange}
@@ -132,6 +142,7 @@ const Main = () => {
           {langs.map(({ code, name }) => (
             <InputRadio
               id={code}
+              key={code}
               value={name}
               active={language === code}
               onChange={handleLanguageChange}
@@ -142,11 +153,11 @@ const Main = () => {
       <Button
         onClick={handleChange}
         disabled={isButtonDisabled}
-        onMouseEnter={() => buttonHover.play()}
+        onMouseEnter={() => playAudio(buttonHover)}
       >
         Save and launch game
       </Button>
-      {log.type === 'success' && log.message}
+      {(log.type === 'success' || log.type === 'error') && log.message}
       {loading && <Loader message={log.message} />}
       <Footer />
     </Container>

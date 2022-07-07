@@ -34,6 +34,12 @@ export const Container = styled.div`
         height: 0.0001rem;
       }
     }
+
+    &.error {
+      background: linear-gradient(180deg, #453F2D00 50%, #9C321355 98%, #9C3213 100%);
+      color: #9C3213;
+    }
+    
     &:hover{
       box-shadow: none;
       background: linear-gradient(180deg, #453F2D00 50%, #453F2D88 99%, #E5DBC2);
