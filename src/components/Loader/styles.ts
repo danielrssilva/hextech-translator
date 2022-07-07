@@ -9,6 +9,7 @@ export const Container = styled.div`
   margin: -2.5rem;
   height: 100vh;
   width: 100vw;
+  z-index: 2;
   h1 {
     position: absolute;
     top: 50%;
@@ -161,20 +162,3 @@ export const Container = styled.div`
 
   }
 `
-
-export const RadioContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-block: 1rem;
-
-  input {
-    margin-right: 0.3rem;
-  }
-
-  div {
-    margin-inline: 3rem;
-  }
-`;

@@ -23,7 +23,7 @@ const Loader = ({ message }: LoaderProps) => {
                 cy="60"
                 r="57.5"
                 stroke="#C2A365"
-                stroke-width="5"
+                strokeWidth="5"
               />
             </svg>
           </div>
@@ -38,7 +38,7 @@ const Loader = ({ message }: LoaderProps) => {
             <path
               d="M29.5 2.5L56 29L29.5 55.5L3 29L29.5 2.5Z"
               stroke="#C2A365"
-              stroke-width="3"
+              strokeWidth="3"
             />
           </svg>
           <svg
@@ -52,7 +52,7 @@ const Loader = ({ message }: LoaderProps) => {
             <path
               d="M29.5 2.5L56 29L29.5 55.5L3 29L29.5 2.5Z"
               stroke="#C2A365"
-              stroke-width="3"
+              strokeWidth="3"
             />
           </svg>
           <div>
@@ -70,7 +70,7 @@ const Loader = ({ message }: LoaderProps) => {
                 height="64"
                 transform="rotate(45 48.2549 3)"
                 stroke="#C2A365"
-                stroke-width="4"
+                strokeWidth="4"
               />
             </svg>
           </div>

@@ -1,7 +1,7 @@
 {
   "name": "hextech-translator",
   "author": "Hya Corporation",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An app used to change League's language",
   "main": "./.webpack/main/index.js",
   "scripts": {
@@ -20,6 +20,9 @@
     "appId": "com.hextech-translator",
     "productName": "Hextech Translator",
     "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": true,
       "artifactName": "Install Hextech Translator.${ext}",
       "uninstallDisplayName": "Hextech Translator"
     },
@@ -90,6 +93,7 @@
     "babel-loader": "8.2.2",
     "cross-env": "7.0.3",
     "electron": "13.1.2",
+    "electron-builder": "23.1.0",
     "eslint": "7.29.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-config-standard": "16.0.3",
